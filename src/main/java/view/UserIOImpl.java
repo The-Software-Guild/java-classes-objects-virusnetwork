@@ -108,4 +108,16 @@ public class UserIOImpl implements UserIO {
         System.out.println(msg);
         return scan.next();
     }
+
+    /**
+     * Gets int for MPAA rating
+     * Specfic function is specfic enough to justify own method
+     *
+     * @return int between 0 - 5
+     */
+    @Override
+    public int getMPAARating() {
+        this.print("Please enter between 0 - 5 for MPAA rating");
+        return readInt("0:\tNR\n1:\tG\n2:\tPG\n3:\tPG13\n4:\tR\n5:\tNC17",0,5);
+    }
 }

@@ -43,4 +43,11 @@ public interface UserIO {
      * @return String entered by user
      */
     String readString(String msg);
+
+    /**
+     * Gets int for MPAA rating
+     * Specfic function is specfic enough to justify own method
+     * @return int between 0 - 5
+     */
+    int getMPAARating();
 }

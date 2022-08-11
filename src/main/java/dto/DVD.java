@@ -5,16 +5,16 @@ import java.util.Date;
 public class DVD {
     private String title;
     private Date releaseDate;
-    private mpaaRating rating;
+    private mpaaRating mpaaRating;
     private String directorsName;
     private String studio;
-    private byte userRating;
+    private int userRating;
 
-    public DVD(String title, Date releaseDate, mpaaRating rating, String directorsName, String studio,
-               byte userRating) {
+    public DVD(String title, Date releaseDate, int mpaaRating, String directorsName, String studio,
+               int userRating) {
         this.title = title;
         this.releaseDate = releaseDate;
-        this.rating = rating;
+        setMPAArating(mpaaRating);
         this.directorsName = directorsName;
         this.studio = studio;
         this.userRating = userRating;
@@ -37,17 +37,41 @@ public class DVD {
     }
 
     public mpaaRating getRating() {
-        return rating;
+        return mpaaRating;
     }
 
-    public void setMPAArating(byte rating) {
+    public void setMPAArating(int rating) {
         switch (rating) {
-            case 0 -> this.rating = mpaaRating.NR;
-            case 1 -> this.rating = mpaaRating.G;
-            case 2 -> this.rating = mpaaRating.PG;
-            case 3 -> this.rating = mpaaRating.PG13;
-            case 4 -> this.rating = mpaaRating.R;
-            case 5 -> this.rating = mpaaRating.NC17;
+            case 0 -> this.mpaaRating = mpaaRating.NR;
+            case 1 -> this.mpaaRating = mpaaRating.G;
+            case 2 -> this.mpaaRating = mpaaRating.PG;
+            case 3 -> this.mpaaRating = mpaaRating.PG13;
+            case 4 -> this.mpaaRating = mpaaRating.R;
+            case 5 -> this.mpaaRating = mpaaRating.NC17;
+        }
+    }
+
+    public String getMPAARating() {
+        switch (this.mpaaRating) {
+            case G -> {
+                return "G";
+            }
+            case PG -> {
+                return "PG";
+            }
+            case PG13 -> {
+                return "PG13";
+            }
+            case R -> {
+                return "R";
+            }
+            case NR -> {
+                return "NR";
+            }
+            case NC17 -> {
+                return "NC17";
+            }
+            default -> throw new IllegalArgumentException("Unknown rating for DVD MPAA rating: " + this.mpaaRating);
         }
     }
 
@@ -67,11 +91,11 @@ public class DVD {
         this.studio = studio;
     }
 
-    public byte getUserRating() {
+    public int getUserRating() {
         return userRating;
     }
 
-    public void setUserRating(byte userRating) {
+    public void setUserRating(int userRating) {
         this.userRating = userRating;
     }
 
