@@ -8,6 +8,9 @@ import java.util.*;
 public class DVDLibraryDaoImpl implements DVDLibraryDao {
     Map<String, DVD> DVDLibrary = new HashMap<>();
 
+    public static final String LIBRARY_FILE = "library.txt";
+    public static final String DELIMITER = "::";
+
     /**
      * Add DVD to library
      *
@@ -140,6 +143,9 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
 
     @Override
     public DVD editDVDNotes(String title, String notes) {
-        return null;
+        DVDLibrary.get(title).setNotes(notes);
+        return DVDLibrary.get(title);
     }
+
+
 }
