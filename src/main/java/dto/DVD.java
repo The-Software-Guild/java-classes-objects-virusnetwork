@@ -9,16 +9,22 @@ public class DVD {
     private String directorsName;
     private String studio;
     private int userRating;
-    private String notes;
+    private String notes = "";
 
     public DVD(String title, LocalDate releaseDate, int mpaaRating, String directorsName, String studio,
                int userRating) {
+        this(title, releaseDate, mpaaRating, directorsName, studio, userRating, "");
+    }
+
+    public DVD(String title, LocalDate releaseDate, int mpaaRating, String directorsName, String studio,
+               int userRating, String notes) {
         this.title = title;
         this.releaseDate = releaseDate;
         setMPAArating(mpaaRating);
         this.directorsName = directorsName;
         this.studio = studio;
         this.userRating = userRating;
+        this.notes = notes;
     }
 
     public String getTitle() {

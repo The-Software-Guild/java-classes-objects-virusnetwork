@@ -2,14 +2,16 @@ package dao;
 
 import dto.DVD;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.time.LocalDate;
 import java.util.*;
 
 public class DVDLibraryDaoImpl implements DVDLibraryDao {
-    Map<String, DVD> DVDLibrary = new HashMap<>();
-
     public static final String LIBRARY_FILE = "library.txt";
     public static final String DELIMITER = "::";
+    Map<String, DVD> DVDLibrary = new HashMap<>();
 
     /**
      * Add DVD to library
@@ -73,7 +75,7 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
     /**
      * Edit realease date
      *
-     * @param title title of DVD to change release date of
+     * @param title       title of DVD to change release date of
      * @param releaseDate new release date
      * @return DVD with new release date
      */
@@ -87,7 +89,7 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
     /**
      * Edit director of a DVD
      *
-     * @param title title of DVD to change
+     * @param title    title of DVD to change
      * @param director new director
      * @return DVD with new director
      */
@@ -115,7 +117,7 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
     /**
      * Edit MPAA rating of a DVD
      *
-     * @param title title of DVD to change MPAA rating
+     * @param title  title of DVD to change MPAA rating
      * @param rating new rating
      * @return DVD with new rating
      */
@@ -131,7 +133,7 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
     /**
      * Edit studio of a DVD
      *
-     * @param title title of DVD
+     * @param title  title of DVD
      * @param studio new studio
      * @return DVD with new studio
      */
@@ -147,5 +149,54 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
         return DVDLibrary.get(title);
     }
 
+    private DVD unmarshallDVD(String dvdAsText) {
+        /*
+        Expected in format <title>::<release date (yyyy-MM-dd)>::<MPARATING>::<Director>::<Studio>::<User rating>::Note
+         */
 
+        String[] dvdToken = dvdAsText.split(DELIMITER);
+
+        //Title is index 0
+        //release date is index 1
+        //mpaa rating is index 2
+        //director is index 3
+        //studio is index 4
+        //user rating is index 5
+        //notes is index 6
+
+        return new DVD(dvdToken[0], LocalDate.parse(dvdToken[1]), Integer.parseInt(dvdToken[2]), dvdToken[3],
+                dvdToken[4], Integer.parseInt(dvdToken[5]), dvdToken[6]);
+    }
+
+    private void loadRoaster() throws DVDLibraryDaoException {
+        Scanner scan;
+
+        try{
+            scan = new Scanner(new BufferedReader(new FileReader(LIBRARY_FILE)));
+        } catch (FileNotFoundException e) {
+            throw new DVDLibraryDaoException("Could not load file");
+        }
+
+        //current line holds most recent line read from file
+        String currentLine;
+
+        //currentDVD holds most recent unmarashalled dvd
+        DVD currentDVD;
+
+        /*
+        Go through LIBRARY FILE line by line
+        decpdomg each lime into DVD
+        process till we run out of files
+         */
+        while(scan.hasNextLine())
+        {
+            currentLine = scan.nextLine();
+
+            currentDVD = this.unmarshallDVD(currentLine);
+
+            this.addDVD(currentDVD.getTitle(),currentDVD);
+        }
+
+        scan.close();
+    }
 }
