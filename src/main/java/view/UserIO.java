@@ -1,5 +1,6 @@
 package view;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public interface UserIO {
@@ -34,7 +35,7 @@ public interface UserIO {
      * @param msg Messeage to be printed to user
      * @return Date
      */
-    Date readDate(String msg);
+    LocalDate readDate(String msg);
 
     /**
      * Get line from user
@@ -43,11 +44,4 @@ public interface UserIO {
      * @return String entered by user
      */
     String readString(String msg);
-
-    /**
-     * Gets int for MPAA rating
-     * Specfic function is specfic enough to justify own method
-     * @return int between 0 - 5
-     */
-    int getMPAARating();
 }

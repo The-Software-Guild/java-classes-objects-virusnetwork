@@ -1,17 +1,17 @@
 package dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class DVD {
     private String title;
-    private Date releaseDate;
+    private LocalDate releaseDate;
     private mpaaRating mpaaRating;
     private String directorsName;
     private String studio;
     private int userRating;
     private String notes;
 
-    public DVD(String title, Date releaseDate, int mpaaRating, String directorsName, String studio,
+    public DVD(String title, LocalDate releaseDate, int mpaaRating, String directorsName, String studio,
                int userRating) {
         this.title = title;
         this.releaseDate = releaseDate;
@@ -29,11 +29,11 @@ public class DVD {
         this.title = title;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -108,7 +108,7 @@ public class DVD {
         this.notes = notes;
     }
 
-    public enum mpaaRating {
+    private enum mpaaRating {
         NR,
         G,
         PG,

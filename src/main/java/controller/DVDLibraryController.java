@@ -20,7 +20,7 @@ public class DVDLibraryController {
         int menuSelection = 0;
         try {
             while (keepGoing) {
-                //get menu selection
+               menuSelection = this.getMenuSelection();
 
                 switch (menuSelection) {
                     case 1 -> createDVD();
@@ -28,7 +28,8 @@ public class DVDLibraryController {
                     case 3 -> editDVDInfo();
                     case 4 -> viewDVD();
                     // case 5 -> TODO: Search for DVD by title
-                    case 6 -> keepGoing = false;
+                    case 6 -> listDVDs();
+                    case 7 -> keepGoing = false;
                     default -> unknownCommand();
                 }
             }
@@ -56,6 +57,11 @@ public class DVDLibraryController {
             case 6 -> editUserRating(dvdTitle);
             case 7 -> editDVDNotes(dvdTitle);
         }
+
+    }
+
+    public void searchForDVDByTitle()
+    {
 
     }
 

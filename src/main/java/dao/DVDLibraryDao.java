@@ -2,6 +2,7 @@ package dao;
 
 import dto.DVD;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public interface DVDLibraryDao {
      * @param releaseDate
      * @return
      */
-    DVD editDVDinfoReleaseDate(String title, Date releaseDate);
+    DVD editDVDinfoReleaseDate(String title, LocalDate releaseDate);
 
     /**
      * Edit director of a DVD

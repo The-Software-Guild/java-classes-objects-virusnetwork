@@ -2,7 +2,8 @@ package view;
 
 import dto.DVD;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 
 public class DVDLibraryView {
@@ -19,15 +20,17 @@ public class DVDLibraryView {
         io.print("3.\tEdit DVD info");
         io.print("4.\tDisplay info of specific DVD");
         io.print("5.\tSearch for DVD by title");
-        io.print("6.\tExit Program");
+        io.print("6.\tPrint All DVDs in collection");
+        io.print("7.\tExit Program");
 
-        return io.readInt("Please select from the above choices.", 1, 6);
+        return io.readInt("Please select from the above choices.", 1, 7);
     }
 
     public DVD getNewDVDInfo() {
         String title = io.readString("Please enter DVD title");
-        Date releaseDate = io.readDate("Please enter release date");
-        int mpaaRating = io.getMPAARating();
+        LocalDate releaseDate = io.readDate("Please enter release date");
+        int mpaaRating = io.readInt("Please enter between 0 - 5 for MPAA " +
+                "rating\n0:\tNR\n1:\tG\n2:\tPG\n3:\tPG13\n4:\tR\n5:\tNC17",0,5);
         String director = io.readString("Please enter Directors name");
         String studio = io.readString("Please enter film studio");
         int userRating = io.readInt("Please enter user's rating\nPlease only enter between 1 - 5\n1 being horrible, 5" +
@@ -37,6 +40,10 @@ public class DVDLibraryView {
     }
 
     public void displayDVDLibrary(List<DVD> dvdList) {
+        if(dvdList == null || dvdList.size() == 0)
+        {
+            io.print("There are no DVDs in the collection");
+        }
         for (DVD dvd : dvdList) {
             this.displayDVDInfo(dvd);
         }
@@ -64,7 +71,7 @@ public class DVDLibraryView {
         return io.readString("Please enter new title");
     }
 
-    public Date editDVDReleaseDate()
+    public LocalDate editDVDReleaseDate()
     {
         return io.readDate("Please enter new release date");
     }
@@ -72,7 +79,8 @@ public class DVDLibraryView {
     public int editMPAARating()
     {
         io.print("Enter new MPAA rating");
-        return io.getMPAARating();
+        return  io.readInt("Please enter between 0 - 5 for MPAA " +
+                "rating\n0:\tNR\n1:\tG\n2:\tPG\n3:\tPG13\n4:\tR\n5:\tNC17",0,5);
     }
 
     public String editDirector()
@@ -98,12 +106,12 @@ public class DVDLibraryView {
 
     private void displayDVDInfo(DVD dvd) {
         String dvdInfo = String.format("""
-                        Title:\t%s
-                        Release Date:\t%s
-                        MPAA:\t%s
-                        Director:\t%s
-                        Studio:\t%s
-                        User rating:\t%d/5""",
+                        Title:%s
+                        Release Date:%s
+                        MPAA:%s
+                        Director:%s
+                        Studio:%s
+                        User rating:%d/5""",
                 dvd.getTitle(),
                 dvd.getReleaseDate().toString(),
                 dvd.getMPAARating(),
@@ -141,8 +149,7 @@ public class DVDLibraryView {
     }
 
     public void displayCreateSuccessBanner() {
-        io.readString(
-                "DVD successfully created.  Please hit enter to continue");
+        io.print("DVD successfully created");
     }
 
     public void displayDisplayDVDBanner() {

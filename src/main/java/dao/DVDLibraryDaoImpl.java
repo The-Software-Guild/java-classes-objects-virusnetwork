@@ -2,6 +2,7 @@ package dao;
 
 import dto.DVD;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class DVDLibraryDaoImpl implements DVDLibraryDao {
@@ -74,7 +75,7 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
      * @return DVD with new release date
      */
     @Override
-    public DVD editDVDinfoReleaseDate(String title, Date releaseDate) {
+    public DVD editDVDinfoReleaseDate(String title, LocalDate releaseDate) {
         DVD temp = DVDLibrary.get(title);
         temp.setReleaseDate(releaseDate);
         return temp;
