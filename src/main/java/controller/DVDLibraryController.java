@@ -48,7 +48,13 @@ public class DVDLibraryController {
         int editChoice = view.getEditInfo(dao.getDVD(dvdTitle));
         switch (editChoice)
         {
-
+            case 1 -> editDVDTitle(dvdTitle);
+            case 2 -> editReleaseDate(dvdTitle);
+            case 3 -> editMPAARating(dvdTitle);
+            case 4 -> editDirector(dvdTitle);
+            case 5 -> editStudio(dvdTitle);
+            case 6 -> editUserRating(dvdTitle);
+            case 7 -> editDVDNotes(dvdTitle);
         }
 
     }

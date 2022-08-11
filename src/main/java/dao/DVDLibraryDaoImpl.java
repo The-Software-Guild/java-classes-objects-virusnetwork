@@ -136,4 +136,9 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
         DVDLibrary.get(title).setStudio(studio);
         return DVDLibrary.get(title);
     }
+
+    @Override
+    public DVD editDVDNotes(String title, String notes) {
+        return null;
+    }
 }

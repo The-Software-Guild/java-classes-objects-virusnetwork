@@ -91,4 +91,6 @@ public interface DVDLibraryDao {
      * @return
      */
     DVD editDVDinfoStudio(String title, String studio);
+
+    DVD editDVDNotes(String title, String notes);
 }

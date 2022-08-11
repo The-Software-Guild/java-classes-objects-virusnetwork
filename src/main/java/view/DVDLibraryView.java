@@ -51,12 +51,49 @@ public class DVDLibraryView {
                     "4.Director\n" +
                     "5.Studio\n" +
                     "6.User rating\n" +
-                    "7.Notes");
+                    "7.Notes", 1, 7);
         } else {
             io.print("DVD does not exist");
             return -1;
         }
 
+    }
+
+    public String editDVDTitle()
+    {
+        return io.readString("Please enter new title");
+    }
+
+    public Date editDVDReleaseDate()
+    {
+        return io.readDate("Please enter new release date");
+    }
+
+    public int editMPAARating()
+    {
+        io.print("Enter new MPAA rating");
+        return io.getMPAARating();
+    }
+
+    public String editDirector()
+    {
+        return io.readString("Please enter new director");
+    }
+
+    public String editStudio()
+    {
+        return io.readString("Please enter new studio");
+    }
+
+    public int editUserRating()
+    {
+        return io.readInt("Please enter new user's rating\nPlease only enter between 1 - 5\n1 being horrible, 5" +
+                " being amazing", 1, 5);
+    }
+
+    public String newDVDNote()
+    {
+        return io.readString("Enter new DVD note");
     }
 
     private void displayDVDInfo(DVD dvd) {
