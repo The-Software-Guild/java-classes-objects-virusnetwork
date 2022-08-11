@@ -9,6 +9,7 @@ public class DVD {
     private String directorsName;
     private String studio;
     private int userRating;
+    private String notes;
 
     public DVD(String title, Date releaseDate, int mpaaRating, String directorsName, String studio,
                int userRating) {
@@ -97,6 +98,14 @@ public class DVD {
 
     public void setUserRating(int userRating) {
         this.userRating = userRating;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     public enum mpaaRating {

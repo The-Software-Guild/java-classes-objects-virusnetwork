@@ -42,6 +42,23 @@ public class DVDLibraryView {
         }
     }
 
+    public int getEditInfo(DVD dvd) {
+        if (dvd != null) {
+            return io.readInt("Please enter which info you want to change\n" +
+                    "1.Title\n" +
+                    "2.Release Date\n" +
+                    "3.MPAA rating\n" +
+                    "4.Director\n" +
+                    "5.Studio\n" +
+                    "6.User rating\n" +
+                    "7.Notes");
+        } else {
+            io.print("DVD does not exist");
+            return -1;
+        }
+
+    }
+
     private void displayDVDInfo(DVD dvd) {
         String dvdInfo = String.format("""
                         Title:\t%s
