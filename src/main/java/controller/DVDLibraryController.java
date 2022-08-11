@@ -27,7 +27,7 @@ public class DVDLibraryController {
                     case 2 -> removeDVD();
                     case 3 -> editDVDInfo();
                     case 4 -> viewDVD();
-                    // case 5 -> TODO: Search for DVD by title
+                    case 5 -> searchForDVDByTitle();
                     case 6 -> listDVDs();
                     case 7 -> keepGoing = false;
                     default -> unknownCommand();
@@ -62,7 +62,9 @@ public class DVDLibraryController {
 
     public void searchForDVDByTitle()
     {
-
+        view.displaySearchDVDByTitleBanner();
+        DVD dvd = dao.getDVD(view.findDVDByTitle());
+        view.isDVDThere(dvd);
     }
 
     public void editDVDTitle(String oldTitle)

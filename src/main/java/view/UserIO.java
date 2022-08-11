@@ -1,7 +1,6 @@
 package view;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public interface UserIO {
     /**
@@ -14,25 +13,25 @@ public interface UserIO {
     /**
      * Read given int
      *
-     * @param msg
-     * @return Interger given by user
+     * @param msg Instructions to user on reading int
+     * @return Integer given by user
      */
     int readInt(String msg);
 
     /**
      * Read integer between a min and max value
      *
-     * @param msg Messeage to be printed to user
-     * @param min minimun value accepted
+     * @param msg Message to be printed to user
+     * @param min minimum value accepted
      * @param max maximum value accepted
-     * @return interger between given range
+     * @return integer between given range
      */
     int readInt(String msg, int min, int max);
 
     /**
      * Read date
      *
-     * @param msg Messeage to be printed to user
+     * @param msg Message to be printed to user
      * @return Date
      */
     LocalDate readDate(String msg);
@@ -40,7 +39,7 @@ public interface UserIO {
     /**
      * Get line from user
      *
-     * @param msg Messeage to tell user
+     * @param msg Message to tell user
      * @return String entered by user
      */
     String readString(String msg);

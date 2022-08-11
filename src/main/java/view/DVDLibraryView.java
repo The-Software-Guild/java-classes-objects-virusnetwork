@@ -2,12 +2,11 @@ package view;
 
 import dto.DVD;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
 
 public class DVDLibraryView {
-    private UserIO io;
+    private final UserIO io;
 
     public DVDLibraryView(UserIO io) {
         this.io = io;
@@ -29,12 +28,20 @@ public class DVDLibraryView {
     public DVD getNewDVDInfo() {
         String title = io.readString("Please enter DVD title");
         LocalDate releaseDate = io.readDate("Please enter release date");
-        int mpaaRating = io.readInt("Please enter between 0 - 5 for MPAA " +
-                "rating\n0:\tNR\n1:\tG\n2:\tPG\n3:\tPG13\n4:\tR\n5:\tNC17",0,5);
+        int mpaaRating = io.readInt("""
+                Please enter between 0 - 5 for MPAA rating
+                0:\tNR
+                1:\tG
+                2:\tPG
+                3:\tPG13
+                4:\tR
+                5:\tNC17""",0,5);
         String director = io.readString("Please enter Directors name");
         String studio = io.readString("Please enter film studio");
-        int userRating = io.readInt("Please enter user's rating\nPlease only enter between 1 - 5\n1 being horrible, 5" +
-                " being amazing", 1, 5);
+        int userRating = io.readInt("""
+                Please enter user's rating
+                Please only enter between 1 - 5
+                1 being horrible, 5 being amazing""", 1, 5);
 
         return new DVD(title, releaseDate, mpaaRating, director, studio, userRating);
     }
@@ -44,6 +51,7 @@ public class DVDLibraryView {
         {
             io.print("There are no DVDs in the collection");
         }
+        assert dvdList != null;
         for (DVD dvd : dvdList) {
             this.displayDVDInfo(dvd);
         }
@@ -51,14 +59,15 @@ public class DVDLibraryView {
 
     public int getEditInfo(DVD dvd) {
         if (dvd != null) {
-            return io.readInt("Please enter which info you want to change\n" +
-                    "1.Title\n" +
-                    "2.Release Date\n" +
-                    "3.MPAA rating\n" +
-                    "4.Director\n" +
-                    "5.Studio\n" +
-                    "6.User rating\n" +
-                    "7.Notes", 1, 7);
+            return io.readInt("""
+                    Please enter which info you want to change
+                    1.Title
+                    2.Release Date
+                    3.MPAA rating
+                    4.Director
+                    5.Studio
+                    6.User rating
+                    7.Notes""", 1, 7);
         } else {
             io.print("DVD does not exist");
             return -1;
@@ -79,8 +88,14 @@ public class DVDLibraryView {
     public int editMPAARating()
     {
         io.print("Enter new MPAA rating");
-        return  io.readInt("Please enter between 0 - 5 for MPAA " +
-                "rating\n0:\tNR\n1:\tG\n2:\tPG\n3:\tPG13\n4:\tR\n5:\tNC17",0,5);
+        return  io.readInt("""
+                Please enter between 0 - 5 for MPAA rating
+                0:\tNR
+                1:\tG
+                2:\tPG
+                3:\tPG13
+                4:\tR
+                5:\tNC17""",0,5);
     }
 
     public String editDirector()
@@ -95,8 +110,10 @@ public class DVDLibraryView {
 
     public int editUserRating()
     {
-        return io.readInt("Please enter new user's rating\nPlease only enter between 1 - 5\n1 being horrible, 5" +
-                " being amazing", 1, 5);
+        return io.readInt("""
+                Please enter new user's rating
+                Please only enter between 1 - 5
+                1 being horrible, 5 being amazing""", 1, 5);
     }
 
     public String newDVDNote()
@@ -128,7 +145,6 @@ public class DVDLibraryView {
         } else {
             io.print("No such DVD exists in library");
         }
-        io.readString("Please hit enter to continue");
     }
 
     public void displayRemovedDVDResult(DVD dvd) {
@@ -137,7 +153,21 @@ public class DVDLibraryView {
         } else {
             io.print("No such DVD exists in library");
         }
-        io.readString("Please hit enter to continue");
+    }
+
+    public String findDVDByTitle() {
+        return io.readString("Enter title to find DVD");
+    }
+
+    public void isDVDThere(DVD dvd)
+    {
+        if(dvd == null)
+        {
+            io.print("No such DVD by title");
+        } else {
+            String con = io.readString("We have that DVD would you like to know more info\nType Yes to find out more");
+            if (con.toLowerCase().equals("yes")) displayDVD(dvd);
+        }
     }
 
     public void displayDisplayAllDVDBanner() {
@@ -175,5 +205,10 @@ public class DVDLibraryView {
     public void displayErrorMessage(String errorMsg) {
         io.print("=== ERROR ===");
         io.print(errorMsg);
+    }
+
+    public void displaySearchDVDByTitleBanner()
+    {
+        io.print("=== Find DVD By Title ===");
     }
 }
