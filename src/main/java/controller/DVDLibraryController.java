@@ -25,7 +25,7 @@ public class DVDLibraryController {
                 switch (menuSelection) {
                     case 1 -> createDVD();
                     case 2 -> removeDVD();
-                    //case 3 -> TODO: edit DVD info
+                    case 3 -> editDVDInfo();
                     case 4 -> viewDVD();
                     // case 5 -> TODO: Search for DVD by title
                     case 6 -> keepGoing = false;
@@ -61,43 +61,37 @@ public class DVDLibraryController {
 
     public void editDVDTitle(String oldTitle)
     {
-        //get titles
-        //dao.editDVDinfoTitle();
+        dao.editDVDinfoTitle(oldTitle, view.editDVDTitle());
     }
 
     public void editReleaseDate(String title)
     {
-        //get new date
-        //dao.editDVDinfoReleaseDate(title);
+        dao.editDVDinfoReleaseDate(title,view.editDVDReleaseDate());
     }
 
     public void editMPAARating(String title)
     {
-        //get new MPAA rating
-        //dao.editDVDinfoMPAARating(title,);
+        dao.editDVDinfoMPAARating(title,view.editMPAARating());
     }
 
     public void editDirector(String title)
     {
-        //edit get director
-        //dao.editDVDinfoDirector(title,)
+        dao.editDVDinfoDirector(title,view.editDirector());
     }
 
     public void editStudio(String title)
     {
-        //get studio
-        //dao.editDVDinfoStudio(title,);
+        dao.editDVDinfoStudio(title,view.editStudio());
     }
 
     public void editUserRating(String title)
     {
-        //get user rating
-        //dao.editDVDinfoUserRating(title,);
+        dao.editDVDinfoUserRating(title,view.editUserRating());
     }
 
     public void editDVDNotes(String title)
     {
-
+        dao.editDVDNotes(title,view.newDVDNote());
     }
 
     public void createDVD() {

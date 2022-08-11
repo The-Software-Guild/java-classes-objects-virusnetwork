@@ -102,7 +102,7 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
      * @return DVD with new rating
      */
     @Override
-    public DVD editDVDinfoUserRating(String title, byte score) {
+    public DVD editDVDinfoUserRating(String title, int score) {
         DVDLibrary.get(title).setUserRating(score);
         return DVDLibrary.get(title);
 
@@ -116,7 +116,7 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
      * @return DVD with new rating
      */
     @Override
-    public DVD editDVDinfoMPAARating(String title, byte rating) {
+    public DVD editDVDinfoMPAARating(String title, int rating) {
         if (rating < 0 || rating > 5) {
             //throw exception
         }

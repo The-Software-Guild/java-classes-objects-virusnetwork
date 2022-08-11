@@ -72,7 +72,7 @@ public interface DVDLibraryDao {
      * @param score
      * @return
      */
-    DVD editDVDinfoUserRating(String title, byte score);
+    DVD editDVDinfoUserRating(String title, int score);
 
     /**
      * Edit MPAA rating of a DVD
@@ -81,7 +81,7 @@ public interface DVDLibraryDao {
      * @param rating
      * @return
      */
-    DVD editDVDinfoMPAARating(String title, byte rating);
+    DVD editDVDinfoMPAARating(String title, int rating);
 
     /**
      * Edit studio of a DVD
