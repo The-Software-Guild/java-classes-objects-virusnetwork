@@ -5,6 +5,11 @@ import dto.DVD;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * DAO interface for DVD library
+ *
+ * @author Miles Singleton
+ */
 public interface DVDLibraryDao {
 
     /**
@@ -17,50 +22,52 @@ public interface DVDLibraryDao {
     DVD addDVD(String title, DVD dvd) throws DVDLibraryDaoException;
 
     /**
+     * Get a list of all DVDs in library
+     *
      * @return List of all DVDs
      */
     List<DVD> getAllDVDs() throws DVDLibraryDaoException;
 
     /**
-     * Get DVD object
+     * Get specific DVD by title
      *
-     * @param title of DVD
-     * @return DVD of title or null if not found
+     * @param title of DVD, used for key in map
+     * @return DVD object or null if not found
      */
     DVD getDVD(String title) throws DVDLibraryDaoException;
 
     /**
-     * Remove DVD from libary
+     * Remove given DVD from library
      *
-     * @param title
-     * @return
+     * @param title of DVD, used for key in map
+     * @return DVD object or null if not found
      */
     DVD removeDVD(String title) throws DVDLibraryDaoException;
 
     /**
-     * Edit title of DVD
+     * Edit title of specific DVD. Find DVD by old key, remove it, change it's title then re-add under new title
      *
-     * @param oldTitle
-     * @param newTitle
-     * @return
+     * @param oldTitle title used as key in map
+     * @param newTitle new title to be changed to
+     * @return DVD object with new name or null if DVD not found
      */
     DVD editDVDinfoTitle(String oldTitle, String newTitle);
 
     /**
-     * Edit realease date
+     * Edit release date of given DVD
      *
-     * @param title
-     * @param releaseDate
-     * @return
+     * @param title       of DVD, used for key in map
+     * @param releaseDate new release date to change to
+     * @return Changed DVD object or null if not found
      */
     DVD editDVDinfoReleaseDate(String title, LocalDate releaseDate);
 
     /**
      * Edit director of a DVD
      *
-     * @param title
-     * @param director
-     * @return
+     * @param title    of DVD, used for key in map
+     * @param director new director to change to
+     * @return Changed DVD object or null if not found
      */
     DVD editDVDinfoDirector(String title, String director);
 
@@ -68,29 +75,36 @@ public interface DVDLibraryDao {
     /**
      * Edit user rating of a DVD
      *
-     * @param title
-     * @param score
-     * @return
+     * @param title of DVD, used for key in map
+     * @param score new user rating of DVD
+     * @return Changed DVD object or null if not found
      */
     DVD editDVDinfoUserRating(String title, int score);
 
     /**
      * Edit MPAA rating of a DVD
      *
-     * @param title
-     * @param rating
-     * @return
+     * @param title  of DVD, used for key in map
+     * @param rating new MPAA rating as int
+     * @return Changed DVD object or null if not found
      */
-    DVD editDVDinfoMPAARating(String title, int rating);
+    DVD editDVDinfoMPAARating(String title, int rating) throws DVDLibraryDaoException;
 
     /**
-     * Edit studio of a DVD
+     * Edit studio of a DVD.
      *
-     * @param title
-     * @param studio
-     * @return
+     * @param title  of DVD, used for key in map.
+     * @param studio new studio to change to.
+     * @return Changed DVD object or null if not found.
      */
     DVD editDVDinfoStudio(String title, String studio);
 
+    /**
+     * Edit DVD note
+     *
+     * @param title of DVD, used for key in map
+     * @param notes new notes to change to
+     * @return Changed DVD object or null if not found
+     */
     DVD editDVDNotes(String title, String notes);
 }

@@ -118,8 +118,9 @@ public class DVDLibraryController {
      * Method for editing MPAA rating of a DVD
      *
      * @param title used for key in hash map in DAO
+     * @throws DVDLibraryDaoException thrown if file cannot be found
      */
-    public void editMPAARating(String title) {
+    public void editMPAARating(String title) throws DVDLibraryDaoException {
         dao.editDVDinfoMPAARating(title, view.editMPAARating());
     }
 
