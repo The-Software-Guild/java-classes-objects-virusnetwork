@@ -11,11 +11,30 @@ public class DVD {
     private int userRating;
     private String notes;
 
+    /**
+     * Constructor for DVD class
+     * @param title Title of DVD
+     * @param releaseDate release date of DVD in yyyy-MM-dd format
+     * @param mpaaRating MPAA rating as int, set MPAA switch case
+     * @param directorsName name of director
+     * @param studio studio which made
+     * @param userRating User's rating of film out of 5
+     */
     public DVD(String title, LocalDate releaseDate, int mpaaRating, String directorsName, String studio,
                int userRating) {
         this(title, releaseDate, mpaaRating, directorsName, studio, userRating, "No Notes");
     }
 
+    /**
+     * Constructor of DVD
+     * @param title Title of DVD
+     * @param releaseDate release date of DVD in yyyy-MM-dd format
+     * @param mpaaRating MPAA rating as int, set MPAA switch case
+     * @param directorsName name of director
+     * @param studio studio which made
+     * @param userRating User's rating of film out of 5
+     * @param notes User's notes on DVD
+     */
     public DVD(String title, LocalDate releaseDate, int mpaaRating, String directorsName, String studio,
                int userRating, String notes) {
         this.title = title;
@@ -27,26 +46,56 @@ public class DVD {
         this.notes = notes;
     }
 
+    /**
+     * Get DVD's title
+     * @return DVD's title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Change title of DVD
+     * @param title new title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * Get release date
+     * @return DVD's release date
+     */
     public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
+    /**
+     * Set release date of DVD
+     * @param releaseDate new release date
+     */
     public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
+    /**
+     * Return MPAA rating in enum MPAA rating
+     * @return MPAA rating
+     */
     public mpaaRating getRating() {
         return mpaaRating;
     }
 
+    /**
+     * Set MPAA rating with int
+     * 0 = No Rating
+     * 1 = G – General Audiences
+     * 2 = PG – Parental Guidance Suggested
+     * 3 = PG-13 – Parents Strongly Cautioned
+     * 4 = R – Restricted
+     * 5 = NC-17 – Adults Only
+     * @param rating new rating as int
+     */
     public void setMPAARating(int rating) {
         switch (rating) {
             case 0 -> this.mpaaRating = mpaaRating.NR;
@@ -58,6 +107,10 @@ public class DVD {
         }
     }
 
+    /**
+     * Get MPAA rating as string
+     * @return string presentation of MPAA rating
+     */
     public String getMPAARatingAsString() {
         switch (this.mpaaRating) {
             case G -> {
@@ -82,6 +135,10 @@ public class DVD {
         }
     }
 
+    /**
+     * Get MPAA rating as int
+     * @return MPAA rating as int
+     */
     public int getMPAARatingAsInt() {
         switch (this.mpaaRating) {
             case NR -> {
@@ -106,38 +163,73 @@ public class DVD {
         }
     }
 
+    /**
+     * Get directors name
+     * @return directors name
+     */
     public String getDirectorsName() {
         return directorsName;
     }
 
+    /**
+     * Change directors name
+     * @param directorsName new directors name
+     */
     public void setDirectorsName(String directorsName) {
         this.directorsName = directorsName;
     }
 
+    /**
+     * Get studio
+     * @return DVD's studio
+     */
     public String getStudio() {
         return studio;
     }
 
+    /**
+     * Change DVD studio
+     * @param studio new studio
+     */
     public void setStudio(String studio) {
         this.studio = studio;
     }
 
+    /**
+     * Get User rating out of 5
+     * @return user rating
+     */
     public int getUserRating() {
         return userRating;
     }
 
+    /**
+     * Change user rating
+     * @param userRating new user rating
+     */
     public void setUserRating(int userRating) {
         this.userRating = userRating;
     }
 
+    /**
+     * Get the DVD's notes
+     * @return DVD's notes
+     */
     public String getNotes() {
         return notes;
     }
 
+    /**
+     * Change DVD notes
+     * @param notes new notes
+     */
     public void setNotes(String notes) {
         this.notes = notes;
     }
 
+    /**
+     * ENUM for mpaa rating, simplifies internal coding of class
+     */
     private enum mpaaRating {
         NR, G, PG, PG13, R, NC17
     }
