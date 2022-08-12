@@ -2,9 +2,7 @@ package dao;
 
 import dto.DVD;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -126,7 +124,7 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
         if (rating < 0 || rating > 5) {
             //throw exception
         }
-        DVDLibrary.get(title).setMPAArating(rating);
+        DVDLibrary.get(title).setMPAARating(rating);
         return DVDLibrary.get(title);
     }
 
@@ -198,5 +196,65 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
         }
 
         scan.close();
+    }
+
+    private String marshallDVD(DVD dvd)
+    {
+        //Title is index 0
+        //release date is index 1
+        //mpaa rating is index 2
+        //director is index 3
+        //studio is index 4
+        //user rating is index 5
+        //notes is index 6
+
+        StringBuilder str = new StringBuilder();
+
+        //title
+        str.append(dvd.getTitle()+DELIMITER);
+
+        //release Date
+        str.append(dvd.getReleaseDate()+DELIMITER);
+
+        //get MPAA rating
+        str.append(dvd.getMPAARatingAsInt()+DELIMITER);
+
+        //Get directors name
+        str.append(dvd.getDirectorsName()+DELIMITER);
+
+        //Get studio
+        str.append(dvd.getStudio()+DELIMITER);
+
+        //get user ratings
+        str.append(dvd.getUserRating()+DELIMITER);
+
+        //get notes
+        str.append(dvd.getNotes());
+
+        return str.toString();
+    }
+
+    private void writeDVDCollection() throws DVDLibraryDaoException
+    {
+        PrintWriter out;
+
+        try{
+            out = new PrintWriter(new FileWriter(LIBRARY_FILE));
+        } catch (IOException e) {
+            throw new DVDLibraryDaoException("Couldn't open file");
+        }
+
+        String dvdAsText;
+        List<DVD> dvdList = this.getAllDVDs();
+        for(DVD dvd : dvdList)
+        {
+            dvdAsText = marshallDVD(dvd);
+
+            out.println(dvdAsText);
+
+            out.flush();
+        }
+
+        out.close();
     }
 }

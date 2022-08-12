@@ -131,7 +131,7 @@ public class DVDLibraryView {
                         User rating:%d/5""",
                 dvd.getTitle(),
                 dvd.getReleaseDate().toString(),
-                dvd.getMPAARating(),
+                dvd.getMPAARatingAsString(),
                 dvd.getDirectorsName(),
                 dvd.getStudio(),
                 dvd.getUserRating()

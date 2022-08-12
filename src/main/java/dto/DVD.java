@@ -9,7 +9,7 @@ public class DVD {
     private String directorsName;
     private String studio;
     private int userRating;
-    private String notes = "";
+    private String notes;
 
     public DVD(String title, LocalDate releaseDate, int mpaaRating, String directorsName, String studio,
                int userRating) {
@@ -20,7 +20,7 @@ public class DVD {
                int userRating, String notes) {
         this.title = title;
         this.releaseDate = releaseDate;
-        setMPAArating(mpaaRating);
+        setMPAARating(mpaaRating);
         this.directorsName = directorsName;
         this.studio = studio;
         this.userRating = userRating;
@@ -47,7 +47,7 @@ public class DVD {
         return mpaaRating;
     }
 
-    public void setMPAArating(int rating) {
+    public void setMPAARating(int rating) {
         switch (rating) {
             case 0 -> this.mpaaRating = mpaaRating.NR;
             case 1 -> this.mpaaRating = mpaaRating.G;
@@ -58,7 +58,7 @@ public class DVD {
         }
     }
 
-    public String getMPAARating() {
+    public String getMPAARatingAsString() {
         switch (this.mpaaRating) {
             case G -> {
                 return "G";
@@ -77,6 +77,30 @@ public class DVD {
             }
             case NC17 -> {
                 return "NC17";
+            }
+            default -> throw new IllegalArgumentException("Unknown rating for DVD MPAA rating: " + this.mpaaRating);
+        }
+    }
+
+    public int getMPAARatingAsInt() {
+        switch (this.mpaaRating) {
+            case NR -> {
+                return 0;
+            }
+            case G -> {
+                return 1;
+            }
+            case PG -> {
+                return 2;
+            }
+            case PG13 -> {
+                return 3;
+            }
+            case R -> {
+                return 4;
+            }
+            case NC17 -> {
+                return 5;
             }
             default -> throw new IllegalArgumentException("Unknown rating for DVD MPAA rating: " + this.mpaaRating);
         }
@@ -115,11 +139,6 @@ public class DVD {
     }
 
     private enum mpaaRating {
-        NR,
-        G,
-        PG,
-        PG13,
-        R,
-        NC17
+        NR, G, PG, PG13, R, NC17
     }
 }
