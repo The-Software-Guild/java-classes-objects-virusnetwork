@@ -14,12 +14,12 @@ public interface DVDLibraryDao {
      * @param dvd   DVD object to add to library
      * @return DVD object in the library
      */
-    DVD addDVD(String title, DVD dvd);
+    DVD addDVD(String title, DVD dvd) throws DVDLibraryDaoException;
 
     /**
      * @return List of all DVDs
      */
-    List<DVD> getAllDVDs();
+    List<DVD> getAllDVDs() throws DVDLibraryDaoException;
 
     /**
      * Get DVD object
@@ -27,7 +27,7 @@ public interface DVDLibraryDao {
      * @param title of DVD
      * @return DVD of title or null if not found
      */
-    DVD getDVD(String title);
+    DVD getDVD(String title) throws DVDLibraryDaoException;
 
     /**
      * Remove DVD from libary
@@ -35,7 +35,7 @@ public interface DVDLibraryDao {
      * @param title
      * @return
      */
-    DVD removeDVD(String title);
+    DVD removeDVD(String title) throws DVDLibraryDaoException;
 
     /**
      * Edit title of DVD

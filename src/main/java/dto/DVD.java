@@ -13,7 +13,7 @@ public class DVD {
 
     public DVD(String title, LocalDate releaseDate, int mpaaRating, String directorsName, String studio,
                int userRating) {
-        this(title, releaseDate, mpaaRating, directorsName, studio, userRating, "");
+        this(title, releaseDate, mpaaRating, directorsName, studio, userRating, "No Notes");
     }
 
     public DVD(String title, LocalDate releaseDate, int mpaaRating, String directorsName, String studio,

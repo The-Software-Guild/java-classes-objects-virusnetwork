@@ -19,15 +19,19 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
      * @return DVD object in the library
      */
     @Override
-    public DVD addDVD(String title, DVD dvd) {
-        return DVDLibrary.put(title, dvd);
+    public DVD addDVD(String title, DVD dvd) throws DVDLibraryDaoException {
+        this.loadRoaster();
+        DVD newDVD = DVDLibrary.put(title, dvd);
+        writeDVDCollection();
+        return newDVD;
     }
 
     /**
      * @return List of all DVDs
      */
     @Override
-    public List<DVD> getAllDVDs() {
+    public List<DVD> getAllDVDs() throws DVDLibraryDaoException {
+        loadRoaster();
         return new ArrayList<>(DVDLibrary.values());
     }
 
@@ -38,7 +42,8 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
      * @return DVD of title or null if not found
      */
     @Override
-    public DVD getDVD(String title) {
+    public DVD getDVD(String title) throws DVDLibraryDaoException {
+        loadRoaster();
         return DVDLibrary.get(title);
     }
 
@@ -49,8 +54,11 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
      * @return DVD added to library
      */
     @Override
-    public DVD removeDVD(String title) {
-        return DVDLibrary.remove(title);
+    public DVD removeDVD(String title) throws DVDLibraryDaoException {
+        loadRoaster();
+        DVD oldDVD = DVDLibrary.remove(title);
+        writeDVDCollection();
+        return oldDVD;
     }
 
     /**
@@ -189,10 +197,14 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
         while(scan.hasNextLine())
         {
             currentLine = scan.nextLine();
+            if(currentLine.equals("") || currentLine.equals(" "))
+            {
+                continue;
+            }
 
             currentDVD = this.unmarshallDVD(currentLine);
 
-            this.addDVD(currentDVD.getTitle(),currentDVD);
+            this.DVDLibrary.put(currentDVD.getTitle(),currentDVD);
         }
 
         scan.close();
@@ -211,22 +223,22 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
         StringBuilder str = new StringBuilder();
 
         //title
-        str.append(dvd.getTitle()+DELIMITER);
+        str.append(dvd.getTitle()).append(DELIMITER);
 
         //release Date
-        str.append(dvd.getReleaseDate()+DELIMITER);
+        str.append(dvd.getReleaseDate()).append(DELIMITER);
 
         //get MPAA rating
-        str.append(dvd.getMPAARatingAsInt()+DELIMITER);
+        str.append(dvd.getMPAARatingAsInt()).append(DELIMITER);
 
         //Get directors name
-        str.append(dvd.getDirectorsName()+DELIMITER);
+        str.append(dvd.getDirectorsName()).append(DELIMITER);
 
         //Get studio
-        str.append(dvd.getStudio()+DELIMITER);
+        str.append(dvd.getStudio()).append(DELIMITER);
 
         //get user ratings
-        str.append(dvd.getUserRating()+DELIMITER);
+        str.append(dvd.getUserRating()).append(DELIMITER);
 
         //get notes
         str.append(dvd.getNotes());

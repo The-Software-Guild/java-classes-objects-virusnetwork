@@ -72,11 +72,11 @@ public class UserIOImpl implements UserIO {
      */
     @Override
     public LocalDate readDate(String msg) {
-        System.out.println(msg);
+        print(msg);
         LocalDate newDate;
         while (true) {
             try {
-                String str = scan.next();
+                String str = scan.nextLine();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 newDate = LocalDate.parse(str, formatter);
                 return newDate;
@@ -95,6 +95,6 @@ public class UserIOImpl implements UserIO {
     @Override
     public String readString(String msg) {
         System.out.println(msg);
-        return scan.next();
+        return scan.nextLine();
     }
 }
