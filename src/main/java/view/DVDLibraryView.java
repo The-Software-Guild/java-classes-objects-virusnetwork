@@ -5,9 +5,18 @@ import dto.DVD;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * View interface for user
+ *
+ * @author Miles Singleton
+ */
 public class DVDLibraryView {
     private final UserIO io;
 
+    /**
+     * Constructor of view
+     * @param io UserIo class for interacting with user and getting data from them
+     */
     public DVDLibraryView(UserIO io) {
         this.io = io;
     }
@@ -25,6 +34,10 @@ public class DVDLibraryView {
         return io.readInt("Please select from the above choices.", 1, 7);
     }
 
+    /**
+     * Create new DVD
+     * @return new DVD
+     */
     public DVD getNewDVDInfo() {
         String title = io.readString("Please enter DVD title");
         LocalDate releaseDate = io.readDate("Please enter release date");
@@ -35,7 +48,7 @@ public class DVDLibraryView {
                 2:\tPG
                 3:\tPG13
                 4:\tR
-                5:\tNC17""",0,5);
+                5:\tNC17""", 0, 5);
         String director = io.readString("Please enter Directors name");
         String studio = io.readString("Please enter film studio");
         int userRating = io.readInt("""
@@ -46,9 +59,12 @@ public class DVDLibraryView {
         return new DVD(title, releaseDate, mpaaRating, director, studio, userRating);
     }
 
+    /**
+     * Display entire DVD library
+     * @param dvdList list of all DVDs
+     */
     public void displayDVDLibrary(List<DVD> dvdList) {
-        if(dvdList == null || dvdList.size() == 0)
-        {
+        if (dvdList == null || dvdList.size() == 0) {
             io.print("There are no DVDs in the collection");
         }
         assert dvdList != null;
@@ -57,6 +73,11 @@ public class DVDLibraryView {
         }
     }
 
+    /**
+     * Get which specfic field a user wants to edit of a DVD
+     * @param dvd DVD to edit
+     * @return int of selection or -1 if DVD is null
+     */
     public int getEditInfo(DVD dvd) {
         if (dvd != null) {
             return io.readInt("""
@@ -75,67 +96,76 @@ public class DVDLibraryView {
 
     }
 
-    public String editDVDTitle()
-    {
+    /**
+     * Get new dvd title
+     * @return new dvd title
+     */
+    public String editDVDTitle() {
         return io.readString("Please enter new title");
     }
 
-    public LocalDate editDVDReleaseDate()
-    {
+    /**
+     * Get new release date for dvd
+     * @return new release date for dvd
+     */
+    public LocalDate editDVDReleaseDate() {
         return io.readDate("Please enter new release date");
     }
 
-    public int editMPAARating()
-    {
+    /**
+     * Get new MPAA rating for dvd
+     * @return new MPAA rating for dvd
+     */
+    public int editMPAARating() {
         io.print("Enter new MPAA rating");
-        return  io.readInt("""
+        return io.readInt("""
                 Please enter between 0 - 5 for MPAA rating
                 0:\tNR
                 1:\tG
                 2:\tPG
                 3:\tPG13
                 4:\tR
-                5:\tNC17""",0,5);
+                5:\tNC17""", 0, 5);
     }
 
-    public String editDirector()
-    {
+    /**
+     * Get new director for DVD
+     * @return new director
+     */
+    public String editDirector() {
         return io.readString("Please enter new director");
     }
 
-    public String editStudio()
-    {
+    /**
+     * Get new studio for DVD
+     * @return new studio
+     */
+    public String editStudio() {
         return io.readString("Please enter new studio");
     }
 
-    public int editUserRating()
-    {
+    public int editUserRating() {
         return io.readInt("""
                 Please enter new user's rating
                 Please only enter between 1 - 5
                 1 being horrible, 5 being amazing""", 1, 5);
     }
 
-    public String newDVDNote()
-    {
+    public String newDVDNote() {
         return io.readString("Enter new DVD note");
     }
 
     private void displayDVDInfo(DVD dvd) {
         String dvdInfo = String.format("""
-                        Title:%s
-                        Release Date:%s
-                        MPAA:%s
-                        Director:%s
-                        Studio:%s
-                        User rating:%d/5""",
-                dvd.getTitle(),
-                dvd.getReleaseDate().toString(),
-                dvd.getMPAARatingAsString(),
-                dvd.getDirectorsName(),
-                dvd.getStudio(),
-                dvd.getUserRating()
-        );
+                Title: %s
+                Release Date: %s
+                MPAA: %s
+                Director: %s
+                Studio: %s
+                User rating: %d/5
+                Notes: %s
+                """, dvd.getTitle(), dvd.getReleaseDate().toString(), dvd.getMPAARatingAsString(),
+                dvd.getDirectorsName(), dvd.getStudio(), dvd.getUserRating(),dvd.getNotes());
         io.print(dvdInfo);
     }
 
@@ -159,14 +189,12 @@ public class DVDLibraryView {
         return io.readString("Enter title to find DVD");
     }
 
-    public void isDVDThere(DVD dvd)
-    {
-        if(dvd == null)
-        {
+    public void isDVDThere(DVD dvd) {
+        if (dvd == null) {
             io.print("No such DVD by title");
         } else {
             String con = io.readString("We have that DVD would you like to know more info\nType Yes to find out more");
-            if (con.toLowerCase().equals("yes")) displayDVD(dvd);
+            if (con.equalsIgnoreCase("yes")) displayDVD(dvd);
         }
     }
 
@@ -207,8 +235,7 @@ public class DVDLibraryView {
         io.print(errorMsg);
     }
 
-    public void displaySearchDVDByTitleBanner()
-    {
+    public void displaySearchDVDByTitleBanner() {
         io.print("=== Find DVD By Title ===");
     }
 }

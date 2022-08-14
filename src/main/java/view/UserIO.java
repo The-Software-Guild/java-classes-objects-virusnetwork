@@ -2,6 +2,11 @@ package view;
 
 import java.time.LocalDate;
 
+/**
+ * Interface for User IO class. Used to read in different date with error handling.
+ *
+ * @author Miles Singleton
+ */
 public interface UserIO {
     /**
      * Print given message

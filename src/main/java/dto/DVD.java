@@ -2,6 +2,11 @@ package dto;
 
 import java.time.LocalDate;
 
+/**
+ * Class for DVDs
+ *
+ * @author Miles Singleton
+ */
 public class DVD {
     private String title;
     private LocalDate releaseDate;

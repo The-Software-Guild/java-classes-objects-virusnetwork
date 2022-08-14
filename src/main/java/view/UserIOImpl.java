@@ -3,9 +3,14 @@ package view;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Implementation of UserIO interface
+ *
+ * @author Miles Singleton
+ * @see UserIO
+ */
 public class UserIOImpl implements UserIO {
     Scanner scan = new Scanner(System.in);
 
@@ -27,15 +32,13 @@ public class UserIOImpl implements UserIO {
      */
     @Override
     public int readInt(String msg) {
-        int num = 0;
-        while(true)
-        {
-            try{
+        int num;
+        while (true) {
+            try {
                 String str = this.readString(msg);
                 num = Integer.parseInt(str);
                 return num;
-            } catch (NumberFormatException e)
-            {
+            } catch (NumberFormatException e) {
                 this.print("Only enter a integer value");
             }
         }
@@ -52,11 +55,9 @@ public class UserIOImpl implements UserIO {
     @Override
     public int readInt(String msg, int min, int max) {
         int num;
-        while(true)
-        {
+        while (true) {
             num = this.readInt(msg);
-            if(num >= min && num <= max)
-            {
+            if (num >= min && num <= max) {
                 return num;
             } else {
                 this.print("Only enter values between " + min + " and " + max);

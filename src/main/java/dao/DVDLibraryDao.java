@@ -51,7 +51,7 @@ public interface DVDLibraryDao {
      * @param newTitle new title to be changed to
      * @return DVD object with new name or null if DVD not found
      */
-    DVD editDVDinfoTitle(String oldTitle, String newTitle);
+    DVD editDVDinfoTitle(String oldTitle, String newTitle) throws DVDLibraryDaoException;
 
     /**
      * Edit release date of given DVD
@@ -60,7 +60,7 @@ public interface DVDLibraryDao {
      * @param releaseDate new release date to change to
      * @return Changed DVD object or null if not found
      */
-    DVD editDVDinfoReleaseDate(String title, LocalDate releaseDate);
+    DVD editDVDinfoReleaseDate(String title, LocalDate releaseDate) throws DVDLibraryDaoException;
 
     /**
      * Edit director of a DVD
@@ -69,7 +69,7 @@ public interface DVDLibraryDao {
      * @param director new director to change to
      * @return Changed DVD object or null if not found
      */
-    DVD editDVDinfoDirector(String title, String director);
+    DVD editDVDinfoDirector(String title, String director) throws DVDLibraryDaoException;
 
 
     /**
@@ -79,7 +79,7 @@ public interface DVDLibraryDao {
      * @param score new user rating of DVD
      * @return Changed DVD object or null if not found
      */
-    DVD editDVDinfoUserRating(String title, int score);
+    DVD editDVDinfoUserRating(String title, int score) throws DVDLibraryDaoException;
 
     /**
      * Edit MPAA rating of a DVD
@@ -97,7 +97,7 @@ public interface DVDLibraryDao {
      * @param studio new studio to change to.
      * @return Changed DVD object or null if not found.
      */
-    DVD editDVDinfoStudio(String title, String studio);
+    DVD editDVDinfoStudio(String title, String studio) throws DVDLibraryDaoException;
 
     /**
      * Edit DVD note
@@ -106,5 +106,5 @@ public interface DVDLibraryDao {
      * @param notes new notes to change to
      * @return Changed DVD object or null if not found
      */
-    DVD editDVDNotes(String title, String notes);
+    DVD editDVDNotes(String title, String notes) throws DVDLibraryDaoException;
 }

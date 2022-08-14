@@ -5,8 +5,6 @@ import dao.DVDLibraryDaoException;
 import dto.DVD;
 import view.DVDLibraryView;
 
-import java.util.List;
-
 /**
  * Controller class for DVD library
  *
@@ -32,7 +30,7 @@ public class DVDLibraryController {
      */
     public void run() {
         boolean keepGoing = true;
-        int menuSelection = 0;
+        int menuSelection;
         while (keepGoing) {
             menuSelection = this.getMenuSelection();
 
@@ -101,8 +99,9 @@ public class DVDLibraryController {
      *
      * @param oldTitle old title used for key in hash map in DAO
      */
-    public void editDVDTitle(String oldTitle) {
-        dao.editDVDinfoTitle(oldTitle, view.editDVDTitle());
+    public void editDVDTitle(String oldTitle) throws DVDLibraryDaoException {
+        String newTitle = view.editDVDTitle();
+        dao.editDVDinfoTitle(oldTitle, newTitle);
     }
 
     /**
@@ -110,7 +109,7 @@ public class DVDLibraryController {
      *
      * @param title used for key in hash map in DAO
      */
-    public void editReleaseDate(String title) {
+    public void editReleaseDate(String title) throws DVDLibraryDaoException {
         dao.editDVDinfoReleaseDate(title, view.editDVDReleaseDate());
     }
 
@@ -129,7 +128,7 @@ public class DVDLibraryController {
      *
      * @param title used for key in hash map in DAO
      */
-    public void editDirector(String title) {
+    public void editDirector(String title) throws DVDLibraryDaoException {
         dao.editDVDinfoDirector(title, view.editDirector());
     }
 
@@ -138,7 +137,7 @@ public class DVDLibraryController {
      *
      * @param title used for key in hash map in DAO
      */
-    public void editStudio(String title) {
+    public void editStudio(String title) throws DVDLibraryDaoException {
         dao.editDVDinfoStudio(title, view.editStudio());
     }
 
@@ -147,7 +146,7 @@ public class DVDLibraryController {
      *
      * @param title used for key in hash map in DAO
      */
-    public void editUserRating(String title) {
+    public void editUserRating(String title) throws DVDLibraryDaoException {
         dao.editDVDinfoUserRating(title, view.editUserRating());
     }
 
@@ -156,7 +155,7 @@ public class DVDLibraryController {
      *
      * @param title used for key in hash map in DAO
      */
-    public void editDVDNotes(String title) {
+    public void editDVDNotes(String title) throws DVDLibraryDaoException {
         dao.editDVDNotes(title, view.newDVDNote());
     }
 
@@ -179,8 +178,7 @@ public class DVDLibraryController {
      */
     public void listDVDs() throws DVDLibraryDaoException {
         view.displayDisplayAllDVDBanner();
-        List<DVD> dvdList = dao.getAllDVDs();
-        view.displayDVDLibrary(dvdList);
+        view.displayDVDLibrary(dao.getAllDVDs());
     }
 
     /**
