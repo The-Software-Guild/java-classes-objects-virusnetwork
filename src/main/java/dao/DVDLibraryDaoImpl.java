@@ -7,9 +7,17 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class DVDLibraryDaoImpl implements DVDLibraryDao {
-    public static final String LIBRARY_FILE = "library.txt";
-    public static final String DELIMITER = "::";
+    private final String LIBRARY_FILE;
+    private static final String DELIMITER = "::";
     Map<String, DVD> DVDLibrary = new HashMap<>();
+
+    public DVDLibraryDaoImpl() {
+        this.LIBRARY_FILE = "library.txt";
+    }
+
+    public DVDLibraryDaoImpl(String testFileLocation) {
+        this.LIBRARY_FILE = testFileLocation;
+    }
 
     /**
      * Add DVD to library
