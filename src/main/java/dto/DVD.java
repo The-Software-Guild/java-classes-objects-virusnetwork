@@ -1,6 +1,7 @@
 package dto;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * Class for DVDs
@@ -87,7 +88,7 @@ public class DVD {
      * Return MPAA rating in enum MPAA rating
      * @return MPAA rating
      */
-    public mpaaRating getRating() {
+    public mpaaRating getMPAARating() {
         return mpaaRating;
     }
 
@@ -237,5 +238,33 @@ public class DVD {
      */
     private enum mpaaRating {
         NR, G, PG, PG13, R, NC17
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DVD dvd = (DVD) o;
+
+        if (userRating != dvd.userRating) return false;
+        if (!Objects.equals(title, dvd.title)) return false;
+        if (!Objects.equals(releaseDate, dvd.releaseDate)) return false;
+        if (mpaaRating != dvd.mpaaRating) return false;
+        if (!Objects.equals(directorsName, dvd.directorsName)) return false;
+        if (!Objects.equals(studio, dvd.studio)) return false;
+        return Objects.equals(notes, dvd.notes);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = title != null ? title.hashCode() : 0;
+        result = 31 * result + (releaseDate != null ? releaseDate.hashCode() : 0);
+        result = 31 * result + (mpaaRating != null ? mpaaRating.hashCode() : 0);
+        result = 31 * result + (directorsName != null ? directorsName.hashCode() : 0);
+        result = 31 * result + (studio != null ? studio.hashCode() : 0);
+        result = 31 * result + userRating;
+        result = 31 * result + (notes != null ? notes.hashCode() : 0);
+        return result;
     }
 }

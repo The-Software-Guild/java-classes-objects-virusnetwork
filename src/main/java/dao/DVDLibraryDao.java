@@ -15,11 +15,10 @@ public interface DVDLibraryDao {
     /**
      * Add DVD to library
      *
-     * @param title the title of the dvd, used as ID
-     * @param dvd   DVD object to add to library
+     * @param dvd DVD object to add to library
      * @return DVD object in the library
      */
-    DVD addDVD(String title, DVD dvd) throws DVDLibraryDaoException;
+    DVD addDVD(DVD dvd) throws DVDLibraryDaoException;
 
     /**
      * Get a list of all DVDs in library
