@@ -19,12 +19,13 @@ public class DVD {
 
     /**
      * Constructor for DVD class
-     * @param title Title of DVD
-     * @param releaseDate release date of DVD in yyyy-MM-dd format
-     * @param mpaaRating MPAA rating as int, set MPAA switch case
+     *
+     * @param title         Title of DVD
+     * @param releaseDate   release date of DVD in yyyy-MM-dd format
+     * @param mpaaRating    MPAA rating as int, set MPAA switch case
      * @param directorsName name of director
-     * @param studio studio which made
-     * @param userRating User's rating of film out of 5
+     * @param studio        studio which made
+     * @param userRating    User's rating of film out of 5
      */
     public DVD(String title, LocalDate releaseDate, int mpaaRating, String directorsName, String studio,
                int userRating) {
@@ -33,13 +34,14 @@ public class DVD {
 
     /**
      * Constructor of DVD
-     * @param title Title of DVD
-     * @param releaseDate release date of DVD in yyyy-MM-dd format
-     * @param mpaaRating MPAA rating as int, set MPAA switch case
+     *
+     * @param title         Title of DVD
+     * @param releaseDate   release date of DVD in yyyy-MM-dd format
+     * @param mpaaRating    MPAA rating as int, set MPAA switch case
      * @param directorsName name of director
-     * @param studio studio which made
-     * @param userRating User's rating of film out of 5
-     * @param notes User's notes on DVD
+     * @param studio        studio which made
+     * @param userRating    User's rating of film out of 5
+     * @param notes         User's notes on DVD
      */
     public DVD(String title, LocalDate releaseDate, int mpaaRating, String directorsName, String studio,
                int userRating, String notes) {
@@ -54,6 +56,7 @@ public class DVD {
 
     /**
      * Get DVD's title
+     *
      * @return DVD's title
      */
     public String getTitle() {
@@ -62,6 +65,7 @@ public class DVD {
 
     /**
      * Change title of DVD
+     *
      * @param title new title
      */
     public void setTitle(String title) {
@@ -70,6 +74,7 @@ public class DVD {
 
     /**
      * Get release date
+     *
      * @return DVD's release date
      */
     public LocalDate getReleaseDate() {
@@ -78,6 +83,7 @@ public class DVD {
 
     /**
      * Set release date of DVD
+     *
      * @param releaseDate new release date
      */
     public void setReleaseDate(LocalDate releaseDate) {
@@ -86,6 +92,7 @@ public class DVD {
 
     /**
      * Return MPAA rating in enum MPAA rating
+     *
      * @return MPAA rating
      */
     public mpaaRating getMPAARating() {
@@ -100,6 +107,7 @@ public class DVD {
      * 3 = PG-13 – Parents Strongly Cautioned
      * 4 = R – Restricted
      * 5 = NC-17 – Adults Only
+     *
      * @param rating new rating as int
      */
     public void setMPAARating(int rating) {
@@ -115,6 +123,7 @@ public class DVD {
 
     /**
      * Get MPAA rating as string
+     *
      * @return string presentation of MPAA rating
      */
     public String getMPAARatingAsString() {
@@ -143,6 +152,7 @@ public class DVD {
 
     /**
      * Get MPAA rating as int
+     *
      * @return MPAA rating as int
      */
     public int getMPAARatingAsInt() {
@@ -171,6 +181,7 @@ public class DVD {
 
     /**
      * Get directors name
+     *
      * @return directors name
      */
     public String getDirectorsName() {
@@ -179,6 +190,7 @@ public class DVD {
 
     /**
      * Change directors name
+     *
      * @param directorsName new directors name
      */
     public void setDirectorsName(String directorsName) {
@@ -187,6 +199,7 @@ public class DVD {
 
     /**
      * Get studio
+     *
      * @return DVD's studio
      */
     public String getStudio() {
@@ -195,6 +208,7 @@ public class DVD {
 
     /**
      * Change DVD studio
+     *
      * @param studio new studio
      */
     public void setStudio(String studio) {
@@ -203,6 +217,7 @@ public class DVD {
 
     /**
      * Get User rating out of 5
+     *
      * @return user rating
      */
     public int getUserRating() {
@@ -211,6 +226,7 @@ public class DVD {
 
     /**
      * Change user rating
+     *
      * @param userRating new user rating
      */
     public void setUserRating(int userRating) {
@@ -219,6 +235,7 @@ public class DVD {
 
     /**
      * Get the DVD's notes
+     *
      * @return DVD's notes
      */
     public String getNotes() {
@@ -227,17 +244,11 @@ public class DVD {
 
     /**
      * Change DVD notes
+     *
      * @param notes new notes
      */
     public void setNotes(String notes) {
         this.notes = notes;
-    }
-
-    /**
-     * ENUM for mpaa rating, simplifies internal coding of class
-     */
-    private enum mpaaRating {
-        NR, G, PG, PG13, R, NC17
     }
 
     @Override
@@ -266,5 +277,12 @@ public class DVD {
         result = 31 * result + userRating;
         result = 31 * result + (notes != null ? notes.hashCode() : 0);
         return result;
+    }
+
+    /**
+     * ENUM for mpaa rating, simplifies internal coding of class
+     */
+    private enum mpaaRating {
+        NR, G, PG, PG13, R, NC17
     }
 }

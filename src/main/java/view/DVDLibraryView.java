@@ -15,6 +15,7 @@ public class DVDLibraryView {
 
     /**
      * Constructor of view
+     *
      * @param io UserIo class for interacting with user and getting data from them
      */
     public DVDLibraryView(UserIO io) {
@@ -36,6 +37,7 @@ public class DVDLibraryView {
 
     /**
      * Create new DVD
+     *
      * @return new DVD
      */
     public DVD getNewDVDInfo() {
@@ -61,6 +63,7 @@ public class DVDLibraryView {
 
     /**
      * Display entire DVD library
+     *
      * @param dvdList list of all DVDs
      */
     public void displayDVDLibrary(List<DVD> dvdList) {
@@ -75,6 +78,7 @@ public class DVDLibraryView {
 
     /**
      * Get which specfic field a user wants to edit of a DVD
+     *
      * @param dvd DVD to edit
      * @return int of selection or -1 if DVD is null
      */
@@ -98,6 +102,7 @@ public class DVDLibraryView {
 
     /**
      * Get new dvd title
+     *
      * @return new dvd title
      */
     public String editDVDTitle() {
@@ -106,6 +111,7 @@ public class DVDLibraryView {
 
     /**
      * Get new release date for dvd
+     *
      * @return new release date for dvd
      */
     public LocalDate editDVDReleaseDate() {
@@ -114,6 +120,7 @@ public class DVDLibraryView {
 
     /**
      * Get new MPAA rating for dvd
+     *
      * @return new MPAA rating for dvd
      */
     public int editMPAARating() {
@@ -130,6 +137,7 @@ public class DVDLibraryView {
 
     /**
      * Get new director for DVD
+     *
      * @return new director
      */
     public String editDirector() {
@@ -138,6 +146,7 @@ public class DVDLibraryView {
 
     /**
      * Get new studio for DVD
+     *
      * @return new studio
      */
     public String editStudio() {
@@ -157,15 +166,15 @@ public class DVDLibraryView {
 
     private void displayDVDInfo(DVD dvd) {
         String dvdInfo = String.format("""
-                Title: %s
-                Release Date: %s
-                MPAA: %s
-                Director: %s
-                Studio: %s
-                User rating: %d/5
-                Notes: %s
-                """, dvd.getTitle(), dvd.getReleaseDate().toString(), dvd.getMPAARatingAsString(),
-                dvd.getDirectorsName(), dvd.getStudio(), dvd.getUserRating(),dvd.getNotes());
+                        Title: %s
+                        Release Date: %s
+                        MPAA: %s
+                        Director: %s
+                        Studio: %s
+                        User rating: %d/5
+                        Notes: %s
+                        """, dvd.getTitle(), dvd.getReleaseDate().toString(), dvd.getMPAARatingAsString(),
+                dvd.getDirectorsName(), dvd.getStudio(), dvd.getUserRating(), dvd.getNotes());
         io.print(dvdInfo);
     }
 

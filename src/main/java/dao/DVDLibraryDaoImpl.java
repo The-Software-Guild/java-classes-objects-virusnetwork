@@ -7,8 +7,8 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class DVDLibraryDaoImpl implements DVDLibraryDao {
-    private final String LIBRARY_FILE;
     private static final String DELIMITER = "::";
+    private final String LIBRARY_FILE;
     Map<String, DVD> DVDLibrary = new HashMap<>();
 
     public DVDLibraryDaoImpl() {
@@ -88,7 +88,7 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
 
         DVD editedDVD = DVDLibrary.remove(oldTitle);
         editedDVD.setTitle(newTitle);
-        DVDLibrary.put(editedDVD.getTitle(),editedDVD);
+        DVDLibrary.put(editedDVD.getTitle(), editedDVD);
         writeDVDLibrary();
         return DVDLibrary.put(newTitle, editedDVD);
     }
@@ -264,7 +264,7 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
      * @return formatted string
      */
     private String marshallDVD(DVD dvd) {
-                //title
+        //title
         return dvd.getTitle() + DELIMITER +
 
                 //release Date

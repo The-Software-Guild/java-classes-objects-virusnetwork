@@ -5,7 +5,7 @@ package dao;
  *
  * @author Miles Singleton
  */
-public class DVDLibraryDaoException extends Exception{
+public class DVDLibraryDaoException extends Exception {
 
 
     /**
