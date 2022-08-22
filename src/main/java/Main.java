@@ -6,9 +6,6 @@ import view.DVDLibraryView;
 import view.UserIO;
 import view.UserIOImpl;
 
-//TODO: Save data to file
-//TODO: Load data from file
-
 public class Main {
     public static void main(String[] args) throws DVDLibraryDaoException {
         UserIO io = new UserIOImpl();
