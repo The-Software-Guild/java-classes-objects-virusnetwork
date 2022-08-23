@@ -1,6 +1,6 @@
-package dao;
+package com.org.dvdlibrary.dao;
 
-import dto.DVD;
+import com.org.dvdlibrary.dto.DVD;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -22,7 +22,6 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
     /**
      * Add DVD to library
      *
-     * @param title the title of the dvd, used as ID
      * @param dvd   DVD object to add to library
      * @return DVD object in the library
      */
@@ -82,10 +81,6 @@ public class DVDLibraryDaoImpl implements DVDLibraryDao {
     @Override
     public DVD editDVDinfoTitle(String oldTitle, String newTitle) throws DVDLibraryDaoException {
         loadDVDLibrary();
-        if (DVDLibrary.get(oldTitle) == null || DVDLibrary.get(newTitle) != null) {
-            throw new DVDLibraryDaoException("DVD does not exist");
-        }
-
         DVD editedDVD = DVDLibrary.remove(oldTitle);
         editedDVD.setTitle(newTitle);
         DVDLibrary.put(editedDVD.getTitle(), editedDVD);

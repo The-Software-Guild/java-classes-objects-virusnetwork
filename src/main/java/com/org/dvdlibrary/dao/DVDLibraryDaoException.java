@@ -1,4 +1,4 @@
-package dao;
+package com.org.dvdlibrary.dao;
 
 /**
  * Exception class for DAO

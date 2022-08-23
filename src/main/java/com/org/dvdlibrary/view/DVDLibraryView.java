@@ -1,6 +1,6 @@
-package view;
+package com.org.dvdlibrary.view;
 
-import dto.DVD;
+import com.org.dvdlibrary.dto.DVD;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,7 +23,7 @@ public class DVDLibraryView {
     }
 
     public int printMenuAndGetSelection() {
-        io.print("Main Menu");
+        io.print("com.org.dvdlibrary.Main Menu");
         io.print("1.\tAdd DVD to collection");
         io.print("2.\tRemove DVD from collection");
         io.print("3.\tEdit DVD info");

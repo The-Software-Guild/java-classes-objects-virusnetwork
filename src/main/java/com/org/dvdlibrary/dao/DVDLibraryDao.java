@@ -1,6 +1,6 @@
-package dao;
+package com.org.dvdlibrary.dao;
 
-import dto.DVD;
+import com.org.dvdlibrary.dto.DVD;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,4 +1,4 @@
-package view;
+package com.org.dvdlibrary.view;
 
 import java.time.LocalDate;
 
